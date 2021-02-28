@@ -22,3 +22,8 @@ plt.show()
 
 #dimensions of the image
 brain_image.shape
+
+
+#greyscale image
+plt.imshow(brain_image, cmap='Greys_r')
+plt.show()
