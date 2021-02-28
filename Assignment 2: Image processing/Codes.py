@@ -27,3 +27,8 @@ brain_image.shape
 #greyscale image
 plt.imshow(brain_image, cmap='Greys_r')
 plt.show()
+
+
+#histogram
+plt.hist(brain_image, bins=10)
+plt.show()
