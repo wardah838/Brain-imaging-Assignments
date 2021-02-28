@@ -34,6 +34,7 @@ plt.hist(brain_image, bins=10)
 plt.show()
 
 
+
 #sigma = 5 Gaussian filter and histogram
 brain_image_sigma5=ndimage.gaussian_filter(brain_image, sigma=5)
 plt.imshow(brain_image_sigma5, cmap='Greys_r')
@@ -42,3 +43,9 @@ plt.hist(brain_image_sigma5, bins=10)
 plt.show()
 
 
+#sigma=10 Gaussian filter and histogram
+brain_image_sigma10=ndimage.gaussian_filter(brain_image, sigma=10)
+plt.imshow(brain_image_sigma10, cmap='Greys_r')
+plt.show()
+plt.hist(brain_image_sigma10, bins=10)
+plt.show()
