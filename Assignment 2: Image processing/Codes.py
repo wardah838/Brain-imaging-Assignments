@@ -18,3 +18,7 @@ from scipy import misc, ndimage
 brain_image=plt.imread("Brain_image.jpg")
 plt.imshow(brain_image)
 plt.show()
+
+
+#dimensions of the image
+brain_image.shape
