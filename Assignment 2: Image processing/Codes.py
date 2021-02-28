@@ -73,3 +73,12 @@ plt.imshow(brain_image_sigma40, cmap='Greys_r')
 plt.show()
 plt.hist(brain_image_sigma40, cmap='Greys_r')
 plt.show()
+
+
+#sigma=50 Gaussian filter and histogram
+brain_image_sigma50=ndimage.gaussian_filter(brain_image, sigma=50)
+plt.imshow(brain_image_sigma50, cmap='Greys_r')
+plt.show()
+plt.hist(brain_image_sigma50, cmap='Greys_r')
+plt.show()
+
