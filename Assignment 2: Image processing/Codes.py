@@ -55,7 +55,7 @@ plt.show()
 brain_image_sigma20=ndimage.gaussian_filter(brain_image, sigma=20)
 plt.imshow(brain_image_sigma20, cmap='Greys_r')
 plt.show()
-plt.hist(brain_image_sigma20, cmap='Greys_r')
+plt.hist(brain_image_sigma20, bins=10)
 plt.show()
 
 
@@ -63,7 +63,7 @@ plt.show()
 brain_image_sigma30=ndimage.gaussian_filter(brain_image, sigma=30)
 plt.imshow(brain_image_sigma30, cmap='Greys_r')
 plt.show()
-plt.hist(brain_image_sigma30, cmap='Greys_r')
+plt.hist(brain_image_sigma30, bins=10)
 plt.show()
 
 
@@ -71,7 +71,7 @@ plt.show()
 brain_image_sigma40=ndimage.gaussian_filter(brain_image, sigma=40)
 plt.imshow(brain_image_sigma40, cmap='Greys_r')
 plt.show()
-plt.hist(brain_image_sigma40, cmap='Greys_r')
+plt.hist(brain_image_sigma40, bins=10)
 plt.show()
 
 
@@ -79,6 +79,6 @@ plt.show()
 brain_image_sigma50=ndimage.gaussian_filter(brain_image, sigma=50)
 plt.imshow(brain_image_sigma50, cmap='Greys_r')
 plt.show()
-plt.hist(brain_image_sigma50, cmap='Greys_r')
+plt.hist(brain_image_sigma50, bins=10)
 plt.show()
 
