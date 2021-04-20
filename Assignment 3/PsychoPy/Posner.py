@@ -552,6 +552,76 @@ for thisTrial in trials:
     thisExp.nextEntry()
     
 # completed 2 repeats of 'trials'
+
+# Prepare to start Routine "finish"
+continueRoutine = True
+routineTimer.add(1.500000)
+# update component parameters for each repeat
+# keep track of which components have finished
+finishComponents = [finishMsg]
+for thisComponent in finishComponents:
+    thisComponent.tStart = None
+    thisComponent.tStop = None
+    thisComponent.tStartRefresh = None
+    thisComponent.tStopRefresh = None
+    if hasattr(thisComponent, 'status'):
+        thisComponent.status = NOT_STARTED
+# reset timers
+t = 0
+_timeToFirstFrame = win.getFutureFlipTime(clock="now")
+finishClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+frameN = -1
+
+#Run Routine "finish"
+while continueRoutine and routineTimer.getTime() > 0:
+    # get current time
+    t = finishClock.getTime()
+    tThisFlip = win.getFutureFlipTime(clock=finishClock)
+    tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+    # update/draw components on each frame
+    
+    # *finishMsg* updates
+    if finishMsg.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        finishMsg.frameNStart = frameN  # exact frame index
+        finishMsg.tStart = t  # local t and not account for scr refresh
+        finishMsg.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(finishMsg, 'tStartRefresh')  # time at next scr refresh
+        finishMsg.setAutoDraw(True)
+    if finishMsg.status == STARTED:
+        # is it time to stop? (based on global clock, using actual start)
+        if tThisFlipGlobal > finishMsg.tStartRefresh + 1.5-frameTolerance:
+            # keep track of stop time/frame for later
+            finishMsg.tStop = t  # not accounting for scr refresh
+            finishMsg.frameNStop = frameN  # exact frame index
+            win.timeOnFlip(finishMsg, 'tStopRefresh')  # time at next scr refresh
+            finishMsg.setAutoDraw(False)
+    
+    # check for quit (typically the Esc key)
+    if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
+        core.quit()
+    
+    # check if all components have finished
+    if not continueRoutine:  # a component has requested a forced-end of Routine
+        break
+    continueRoutine = False  # will revert to True if at least one component still running
+    for thisComponent in finishComponents:
+        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+            continueRoutine = True
+            break  # at least one component has not yet finished
+    
+    # refresh the screen
+    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+        win.flip()
+
+# Ending Routine "finish"
+for thisComponent in finishComponents:
+    if hasattr(thisComponent, "setAutoDraw"):
+        thisComponent.setAutoDraw(False)
+thisExp.addData('finishMsg.started', finishMsg.tStartRefresh)
+thisExp.addData('finishMsg.stopped', finishMsg.tStopRefresh)
+
         
 
 
