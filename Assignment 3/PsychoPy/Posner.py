@@ -392,6 +392,59 @@ for thisTrial in trials:
                     mouse.time.append(mouse.mouseClock.getTime())
                     if gotValidClick:  # abort routine on response
                         continueRoutine = False
+                        
+                     # *keyPress* updates
+        waitOnFlip = False
+        if keyPress.status == NOT_STARTED and tThisFlip >= 1.2-frameTolerance:
+            # keep track of start time/frame for later
+            keyPress.frameNStart = frameN  # exact frame index
+            keyPress.tStart = t  # local t and not account for scr refresh
+            keyPress.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(keyPress, 'tStartRefresh')  # time at next scr refresh
+            keyPress.status = STARTED
+            # keyboard checking is just starting
+            waitOnFlip = True
+            win.callOnFlip(keyPress.clock.reset)  # t=0 on next screen flip
+            win.callOnFlip(keyPress.clearEvents, eventType='keyboard')  # clear events on next screen flip
+        if keyPress.status == STARTED:
+            # is it time to stop? (based on global clock, using actual start)
+            if tThisFlipGlobal > keyPress.tStartRefresh + 1.0-frameTolerance:
+                # keep track of stop time/frame for later
+                keyPress.tStop = t  # not accounting for scr refresh
+                keyPress.frameNStop = frameN  # exact frame index
+                win.timeOnFlip(keyPress, 'tStopRefresh')  # time at next scr refresh
+                keyPress.status = FINISHED
+        if keyPress.status == STARTED and not waitOnFlip:
+            theseKeys = keyPress.getKeys(keyList=['left', 'right'], waitRelease=False)
+            _keyPress_allKeys.extend(theseKeys)
+            if len(_keyPress_allKeys):
+                keyPress.keys = _keyPress_allKeys[-1].name  # just the last key pressed
+                keyPress.rt = _keyPress_allKeys[-1].rt
+                # was this correct?
+                if (keyPress.keys == str(corrAns)) or (keyPress.keys == corrAns):
+                    keyPress.corr = 1
+                else:
+                    keyPress.corr = 0
+                # a response ends the routine
+                continueRoutine = False
+        
+        # check for quit (typically the Esc key)
+        if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
+            core.quit()
+        
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in trialComponents:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+        
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+    
         
 
 
