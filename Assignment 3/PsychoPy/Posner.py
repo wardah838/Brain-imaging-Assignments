@@ -131,6 +131,32 @@ finishMsg = visual.TextStim(win=win, name='finishMsg',
     languageStyle='LTR',
     depth=0.0);
 
+# Create some handy timers
+globalClock = core.Clock()  # to track the time since experiment started
+routineTimer = core.CountdownTimer()  # to track time remaining of each (non-slip) routine 
+
+#Prepare to start Routine "instructs"
+continueRoutine = True
+# update component parameters for each repeat
+keyToStart.keys = []
+keyToStart.rt = []
+_keyToStart_allKeys = []
+# setup some python lists for storing info about the mouseStart
+gotValidClick = False  # until a click is received
+# keep track of which components have finished
+instructsComponents = [instructText, keyToStart, mouseStart]
+for thisComponent in instructsComponents:
+    thisComponent.tStart = None
+    thisComponent.tStop = None
+    thisComponent.tStartRefresh = None
+    thisComponent.tStopRefresh = None
+    if hasattr(thisComponent, 'status'):
+        thisComponent.status = NOT_STARTED
+# reset timers
+t = 0
+_timeToFirstFrame = win.getFutureFlipTime(clock="now")
+instructsClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+frameN = -1
 
 
 
