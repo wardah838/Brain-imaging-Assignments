@@ -81,6 +81,57 @@ mouseStart = event.Mouse(win=win)
 x, y = [None, None]
 mouseStart.mouseClock = core.Clock()
 
+# Initialize components for Routine "trial"
+trialClock = core.Clock()
+fixation = visual.TextStim(win=win, name='fixation',
+    text='+',
+    font='Arial',
+    units='height', pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
+cue = visual.ImageStim(
+    win=win,
+    name='cue', units='height', 
+    image='images/arrow-left.png', mask=None,
+    ori=1.0, pos=(0, 0), size=(.20, .20),
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=-1.0)
+target = visual.ImageStim(
+    win=win,
+    name='target', units='height', 
+    image='images/circle_red.png', mask=None,
+    ori=0, pos=[0,0], size=(.20, .20),
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=-2.0)
+mouse = event.Mouse(win=win)
+x, y = [None, None]
+mouse.mouseClock = core.Clock()
+keyPress = keyboard.Keyboard()
+
+# Initialize components for Routine "BlankScreen5"
+BlankScreen5Clock = core.Clock()
+text = visual.TextStim(win=win, name='text',
+    text=None,
+    font='Arial',
+    pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
+
+# Initialize components for Routine "finish"
+finishClock = core.Clock()
+finishMsg = visual.TextStim(win=win, name='finishMsg',
+    text="Thanks for taking part in the experiment.\n\nWe'll just go and save that data for you!",
+    font='Arial',
+    units='height', pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
+
+
 
 
 
