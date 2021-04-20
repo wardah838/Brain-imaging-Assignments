@@ -216,7 +216,83 @@ while continueRoutine:
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
         core.quit()
+ # check if all components have finished
+    if not continueRoutine:  # a component has requested a forced-end of Routine
+        break
+    continueRoutine = False  # will revert to True if at least one component still running
+    for thisComponent in instructsComponents:
+        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+            continueRoutine = True
+            break  # at least one component has not yet finished
+    
+    # refresh the screen
+    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+        win.flip()
 
+# Ending Routine "instructions"
+for thisComponent in instructsComponents:
+    if hasattr(thisComponent, "setAutoDraw"):
+        thisComponent.setAutoDraw(False)
+thisExp.addData('instructText.started', instructText.tStartRefresh)
+thisExp.addData('instructText.stopped', instructText.tStopRefresh)
+# store data for thisExp (ExperimentHandler)
+thisExp.addData('mouseStart.started', mouseStart.tStart)
+thisExp.addData('mouseStart.stopped', mouseStart.tStop)
+thisExp.nextEntry()
+# the Routine "instructs" was not non-slip safe, so reset the non-slip timer
+routineTimer.reset()
+
+# set up handler to look after randomisation of conditions etc
+trials = data.TrialHandler(nReps=2, method='random', 
+    extraInfo=expInfo, originPath=-1,
+    trialList=data.importConditions('conditions.csv'),
+    seed=None, name='trials')
+thisExp.addLoop(trials)  # add the loop to the experiment
+thisTrial = trials.trialList[0]  # so we can initialise stimuli with some values
+# abbreviate parameter names if possible (e.g. rgb = thisTrial.rgb)
+if thisTrial != None:
+    for paramName in thisTrial:
+        exec('{} = thisTrial[paramName]'.format(paramName))
+
+for thisTrial in trials:
+    currentLoop = trials
+    # abbreviate parameter names if possible (e.g. rgb = thisTrial.rgb)
+    if thisTrial != None:
+        for paramName in thisTrial:
+            exec('{} = thisTrial[paramName]'.format(paramName))
+    
+    # Prepare to start Routine "trial"
+    continueRoutine = True
+    routineTimer.add(2.200000)
+    # update component parameters for each repeat
+    cue.setOri(cueOri)
+    target.setPos([targetX, 0])
+    # setup some python lists for storing info about the mouse
+    mouse.x = []
+    mouse.y = []
+    mouse.leftButton = []
+    mouse.midButton = []
+    mouse.rightButton = []
+    mouse.time = []
+    mouse.clicked_name = []
+    gotValidClick = False  # until a click is received
+    keyPress.keys = []
+    keyPress.rt = []
+    _keyPress_allKeys = []
+    # keep track of which components have finished
+    trialComponents = [fixation, cue, target, mouse, keyPress]
+    for thisComponent in trialComponents:
+        thisComponent.tStart = None
+        thisComponent.tStop = None
+        thisComponent.tStartRefresh = None
+        thisComponent.tStopRefresh = None
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+    # reset timers
+    t = 0
+    _timeToFirstFrame = win.getFutureFlipTime(clock="now")
+    trialClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+    frameN = -1
 
 
 
