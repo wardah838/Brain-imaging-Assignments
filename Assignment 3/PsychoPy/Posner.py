@@ -32,21 +32,6 @@ expInfo['date'] = data.getDateStr()  # add a simple timestamp
 expInfo['expName'] = expName
 expInfo['psychopyVersion'] = psychopyVersion
 
-# Setup the Window
-win = visual.Window(
-    size=[1920, 1080], fullscr=True, screen=0, 
-    winType='pyglet', allowGUI=False, allowStencil=False,
-    monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
-    blendMode='avg', useFBO=True, 
-    units='height')
-# store frame rate of monitor if we can measure it
-expInfo['frameRate'] = win.getActualFrameRate()
-if expInfo['frameRate'] != None:
-    frameDur = 1.0 / round(expInfo['frameRate'])
-else:
-    frameDur = 1.0 / 60.0  # could not measure, so guess
-
-
 # Data file name stem = absolute path + name; later add .psyexp, .csv, .log, etc
 filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expName, expInfo['date'])
 
@@ -62,5 +47,40 @@ logging.console.setLevel(logging.WARNING)  # this outputs to the screen, not a f
 
 endExpNow = False  # flag for 'escape' or other condition => quit the exp
 frameTolerance = 0.001  # how close to onset before 'same' frame
+
+
+# Setup the Window
+
+win = visual.Window(
+    size=[1920, 1080], fullscr=True, screen=0, 
+    winType='pyglet', allowGUI=False, allowStencil=False,
+    monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
+    blendMode='avg', useFBO=True, 
+    units='height')
+# store frame rate of monitor if we can measure it
+expInfo['frameRate'] = win.getActualFrameRate()
+if expInfo['frameRate'] != None:
+    frameDur = 1.0 / round(expInfo['frameRate'])
+else:
+    frameDur = 1.0 / 60.0  # could not measure, so guess
+    
+    # create a default keyboard (e.g. to check for escape)
+defaultKeyboard = keyboard.Keyboard()
+
+# Initializing components for "instructions"
+instructsClock = core.Clock()
+instructText = visual.TextStim(win=win, name='instructText',
+    text='Welcome to the experiment.\nA red colored target will appear on the left or the right side of the screen brfore you, followed by a cue. \n\nPress the "left" key when the target appears to the left of the screen, and the "right" key when the target appears to the right. Try to do this as fast as possible. \nPress any key to start the experiment.',
+    font='Arial',
+    units='height', pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
+keyToStart = keyboard.Keyboard()
+mouseStart = event.Mouse(win=win)
+x, y = [None, None]
+mouseStart.mouseClock = core.Clock()
+
+
 
 
