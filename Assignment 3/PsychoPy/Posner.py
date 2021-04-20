@@ -158,6 +158,65 @@ _timeToFirstFrame = win.getFutureFlipTime(clock="now")
 instructsClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
 frameN = -1
 
+# Run Routine "instruction"
+while continueRoutine:
+    # get current time
+    t = instructsClock.getTime()
+    tThisFlip = win.getFutureFlipTime(clock=instructsClock)
+    tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+    # update/draw components on each frame
+    
+    # *Text* updates
+    if instructText.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        instructText.frameNStart = frameN  # exact frame index
+        instructText.tStart = t  # local t and not account for scr refresh
+        instructText.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(instructText, 'tStartRefresh')  # time at next scr refresh
+        instructText.setAutoDraw(True)
+    
+    # *keyToStart* updates
+    waitOnFlip = False
+    if keyToStart.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        keyToStart.frameNStart = frameN  # exact frame index
+        keyToStart.tStart = t  # local t and not account for scr refresh
+        keyToStart.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(keyToStart, 'tStartRefresh')  # time at next scr refresh
+        keyToStart.status = STARTED
+        # keyboard checking is just starting
+        waitOnFlip = True
+        win.callOnFlip(keyToStart.clock.reset)  # t=0 on next screen flip
+        win.callOnFlip(keyToStart.clearEvents, eventType='keyboard')  # clear events on next screen flip
+    if keyToStart.status == STARTED and not waitOnFlip:
+        theseKeys = keyToStart.getKeys(keyList=None, waitRelease=False)
+        _keyToStart_allKeys.extend(theseKeys)
+        if len(_keyToStart_allKeys):
+            keyToStart.keys = _keyToStart_allKeys[-1].name  # just the last key pressed
+            keyToStart.rt = _keyToStart_allKeys[-1].rt
+            # a response ends the routine
+            continueRoutine = False
+    # *mouseStart* updates
+    if mouseStart.status == NOT_STARTED and t >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        mouseStart.frameNStart = frameN  # exact frame index
+        mouseStart.tStart = t  # local t and not account for scr refresh
+        mouseStart.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(mouseStart, 'tStartRefresh')  # time at next scr refresh
+        mouseStart.status = STARTED
+        mouseStart.mouseClock.reset()
+        prevButtonState = mouseStart.getPressed()  # if button is down already this ISN'T a new click
+    if mouseStart.status == STARTED:  # only update if started and not finished!
+        buttons = mouseStart.getPressed()
+        if buttons != prevButtonState:  # button state changed?
+            prevButtonState = buttons
+            if sum(buttons) > 0:  # state changed to a new click
+                continueRoutine = False    
+    # check for quit (typically the Esc key)
+    if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
+        core.quit()
+
 
 
 
