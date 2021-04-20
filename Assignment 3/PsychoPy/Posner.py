@@ -293,6 +293,106 @@ for thisTrial in trials:
     _timeToFirstFrame = win.getFutureFlipTime(clock="now")
     trialClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
     frameN = -1
+    
+        # Run Routine "trial"
+    while continueRoutine and routineTimer.getTime() > 0:
+        # get current time
+        t = trialClock.getTime()
+        tThisFlip = win.getFutureFlipTime(clock=trialClock)
+        tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+        
+        # *fixation* updates
+        if fixation.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            fixation.frameNStart = frameN  # exact frame index
+            fixation.tStart = t  # local t and not account for scr refresh
+            fixation.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(fixation, 'tStartRefresh')  # time at next scr refresh
+            fixation.setAutoDraw(True)
+        if fixation.status == STARTED:
+            # is it time to stop? (based on global clock, using actual start)
+            if tThisFlipGlobal > fixation.tStartRefresh + 0.8-frameTolerance:
+                # keep track of stop time/frame for later
+                fixation.tStop = t  # not accounting for scr refresh
+                fixation.frameNStop = frameN  # exact frame index
+                win.timeOnFlip(fixation, 'tStopRefresh')  # time at next scr refresh
+                fixation.setAutoDraw(False)
+        
+        # *cue* updates
+        if cue.status == NOT_STARTED and tThisFlip >= 0.8-frameTolerance:
+            # keep track of start time/frame for later
+            cue.frameNStart = frameN  # exact frame index
+            cue.tStart = t  # local t and not account for scr refresh
+            cue.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(cue, 'tStartRefresh')  # time at next scr refresh
+            cue.setAutoDraw(True)
+        if cue.status == STARTED:
+            # is it time to stop? (based on global clock, using actual start)
+            if tThisFlipGlobal > cue.tStartRefresh + 0.4-frameTolerance:
+                # keep track of stop time/frame for later
+                cue.tStop = t  # not accounting for scr refresh
+                cue.frameNStop = frameN  # exact frame index
+                win.timeOnFlip(cue, 'tStopRefresh')  # time at next scr refresh
+                cue.setAutoDraw(False)
+        
+        # *target* updates
+        if target.status == NOT_STARTED and tThisFlip >= 1.2-frameTolerance:
+            # keep track of start time/frame for later
+            target.frameNStart = frameN  # exact frame index
+            target.tStart = t  # local t and not account for scr refresh
+            target.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(target, 'tStartRefresh')  # time at next scr refresh
+            target.setAutoDraw(True)
+        if target.status == STARTED:
+            # is it time to stop? (based on global clock, using actual start)
+            if tThisFlipGlobal > target.tStartRefresh + 1.0-frameTolerance:
+                # keep track of stop time/frame for later
+                target.tStop = t  # not accounting for scr refresh
+                target.frameNStop = frameN  # exact frame index
+                win.timeOnFlip(target, 'tStopRefresh')  # time at next scr refresh
+                target.setAutoDraw(False)
+        # *mouse* updates
+        if mouse.status == NOT_STARTED and t >= 1.2-frameTolerance:
+            # keep track of start time/frame for later
+            mouse.frameNStart = frameN  # exact frame index
+            mouse.tStart = t  # local t and not account for scr refresh
+            mouse.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(mouse, 'tStartRefresh')  # time at next scr refresh
+            mouse.status = STARTED
+            mouse.mouseClock.reset()
+            prevButtonState = mouse.getPressed()  # if button is down already this ISN'T a new click
+        if mouse.status == STARTED:
+            # is it time to stop? (based on global clock, using actual start)
+            if tThisFlipGlobal > mouse.tStartRefresh + 1.0-frameTolerance:
+                # keep track of stop time/frame for later
+                mouse.tStop = t  # not accounting for scr refresh
+                mouse.frameNStop = frameN  # exact frame index
+                win.timeOnFlip(mouse, 'tStopRefresh')  # time at next scr refresh
+                mouse.status = FINISHED
+        if mouse.status == STARTED:  # only update if started and not finished!
+            buttons = mouse.getPressed()
+            if buttons != prevButtonState:  # button state changed?
+                prevButtonState = buttons
+                if sum(buttons) > 0:  # state changed to a new click
+                    # check if the mouse was inside our 'clickable' objects
+                    gotValidClick = False
+                    for obj in [target]:
+                        if obj.contains(mouse):
+                            gotValidClick = True
+                            mouse.clicked_name.append(obj.name)
+                    x, y = mouse.getPos()
+                    mouse.x.append(x)
+                    mouse.y.append(y)
+                    buttons = mouse.getPressed()
+                    mouse.leftButton.append(buttons[0])
+                    mouse.midButton.append(buttons[1])
+                    mouse.rightButton.append(buttons[2])
+                    mouse.time.append(mouse.mouseClock.getTime())
+                    if gotValidClick:  # abort routine on response
+                        continueRoutine = False
+        
 
 
 
